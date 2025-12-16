@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Turubai — Tribe & Lab</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    html,body,#app { height: 100%; }
+    .slide { transition: opacity .6s ease, transform .6s ease; }
+  </style>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            baseblack: "#0e0e0f",
+            ember: "#d12a2a",
+            ochre: "#c48a2e",
+            tealdeep: "#0f6a63",
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-baseblack text-gray-200 antialiased">
+
+<!-- ░░░ NAVBAR ░░░ -->
+<header class="fixed top-0 left-0 right-0 z-40">
+  <nav class="backdrop-blur-xl bg-black/40 border-b border-white/5">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-tealdeep to-ember flex items-center justify-center text-white font-bold tracking-widest">T</div>
+          <div class="hidden sm:block">
+            <div class="text-sm font-semibold tracking-wide text-gray-100">Turubai</div>
+            <div class="text-xs text-gray-500/80">Tribe & Lab</div>
+          </div>
+        </a>
+
+        <!-- Navigation -->
+        <div class="hidden md:flex items-center gap-8">
+          <a href="tribe.html" class="text-sm hover:text-tealdeep transition">Tribe</a>
+          <a href="lab.html" class="text-sm hover:text-ochre transition">Lab</a>
+          <a href="nuke.html" class="text-sm hover:text-ember transition">NUKe</a>
+          <a href="barakoa.html" class="text-sm hover:text-ochre transition">Barakoa</a>
+
+        </div>
+
+        <!-- Mobile toggle -->
+        <button id="mobileToggle" class="md:hidden p-2 rounded-md hover:bg-white/10">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
+          </svg>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="md:hidden hidden border-t border-white/5 bg-black/60">
+      <div class="px-4 py-4 flex flex-col gap-3">
+        <a href="tribe.html" class="py-1 hover:text-tealdeep transition">Tribe</a>
+        <a href="lab.html" class="py-1 hover:text-ochre transition">Lab</a>
+        <a href="about.html" class="py-1 hover:text-ember transition">About</a>
+        <a href="#slides" class="py-1">Explore</a>
+      </div>
+    </div>
+
+  </nav>
+</header>
+
+
+
+
+<!-- ░░░ SLIDESHOW ░░░ -->
+<main id="app" class="relative h-full pt-16">
+<section id="slides" class="h-[calc(100vh-4rem)] max-h-[100vh]">
+
+  <div id="slideshow" class="relative h-full overflow-hidden">
+
+    <!-- SLIDE 1 -->
+    <article class="slide absolute inset-0 flex items-center justify-center bg-gradient-to-br from-black via-baseblack to-tealdeep/20 text-gray-100 p-8"
+      data-index="0">
+      <div class="max-w-4xl mx-auto text-center">
+
+        <h1 class="text-5xl sm:text-6xl font-extrabold tracking-tight">
+          Turubai Tribe
+        </h1>
+
+        <p class="mt-5 text-lg text-gray-300 max-w-xl mx-auto">
+          A movement-aligned collective for the creative, the communal, and the complex.
+        </p>
+
+        <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="tribe.html" class="px-8 py-3 rounded-full bg-tealdeep text-white font-medium hover:bg-tealdeep/90">
+            visit the tribe
+          </a>
+        </div>
+
+      </div>
+    </article>
+
+    <!-- SLIDE 2 -->
+    <article class="slide absolute inset-0 flex items-center justify-center bg-gradient-to-tr from-black via-baseblack to-ochre/20 text-gray-100 p-8 opacity-0 translate-x-full"
+      data-index="1">
+      <div class="max-w-4xl mx-auto text-center">
+
+        <h2 class="text-5xl font-bold tracking-tight">Turubai Lab</h2>
+        <p class="mt-4 text-lg text-gray-400 max-w-xl mx-auto">
+          Experimental tools & cultural technologies grown from real complexity.
+        </p>
+
+        <div class="mt-10 flex gap-4 justify-center">
+          <a href="lab.html" class="px-8 py-3 rounded-full bg-ochre text-black font-semibold hover:bg-ochre/90">
+            explore the lab
+          </a>
+        </div>
+
+      </div>
+    </article>
+
+    <!-- SLIDE 3 -->
+    <article class="slide absolute inset-0 flex items-center justify-center bg-gradient-to-b from-black via-baseblack to-ember/20 text-gray-100 p-8 opacity-0 translate-x-full"
+      data-index="2">
+      <div class="max-w-4xl mx-auto text-center">
+
+        <h2 class="text-5xl font-bold tracking-tight">
+          NUKe
+        </h2>
+
+        <p class="mt-4 text-lg text-gray-300 max-w-xl mx-auto">
+            disruptive, creative, underground
+        </p>
+
+        <div class="mt-8">
+          <a href="about.html" class="px-8 py-3 rounded-full bg-white text-black font-semibold hover:bg-gray-200">
+            about NUKe
+          </a>
+        </div>
+
+      </div>
+    </article>
+
+
+
+
+    <!-- Buttons -->
+    <button id="prevBtn" class="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-white/10 p-2 hover:bg-white/20">
+      <svg class="h-6 w-6 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+      </svg>
+    </button>
+
+    <button id="nextBtn" class="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-white/10 p-2 hover:bg-white/20">
+      <svg class="h-6 w-6 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+      </svg>
+    </button>
+
+    <!-- Dots -->
+    <div id="dots" class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3"></div>
+
+  </div>
+</section>
+</main>
+
+
+<!-- ░░░ JAVASCRIPT ░░░ -->
+<script>
+  (function () {
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const dotsWrap = document.getElementById('dots');
+    const ctaExplore = document.getElementById('ctaExplore');
+    const mobileToggle = document.getElementById('mobileToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    let idx = 0;
+    let timer;
+    const interval = 6000;
+
+    slides.forEach((s, i) => {
+      const dot = document.createElement('button');
+      dot.className = "w-3 h-3 rounded-full bg-white/20 hover:bg-white/40 transition";
+      dot.addEventListener('click', () => goTo(i));
+      dotsWrap.appendChild(dot);
+    });
+
+    const dots = Array.from(dotsWrap.children);
+
+    function show(i) {
+      slides.forEach((s, j) => {
+        if (j === i) {
+          s.style.transform = "translateX(0)";
+          s.style.opacity = "1";
+        } else if (j < i) {
+          s.style.transform = "translateX(-100%)";
+          s.style.opacity = "0";
+        } else {
+          s.style.transform = "translateX(100%)";
+          s.style.opacity = "0";
+        }
+      });
+      dots.forEach((d, k) => {
+        d.style.backgroundColor = k === i ? "white" : "rgba(255,255,255,0.2)";
+      });
+      idx = i;
+    }
+
+    function next() { show((idx + 1) % slides.length); }
+    function prev() { show((idx - 1 + slides.length) % slides.length); }
+    function goTo(i) { show(i); resetAutoplay(); }
+
+    prevBtn.onclick = () => { prev(); resetAutoplay(); }
+    nextBtn.onclick = () => { next(); resetAutoplay(); }
+
+    window.onkeydown = (e) => {
+      if (e.key === "ArrowLeft") { prev(); resetAutoplay(); }
+      if (e.key === "ArrowRight") { next(); resetAutoplay(); }
+    };
+
+    function startAutoplay() {
+      timer = setInterval(next, interval);
+    }
+    function resetAutoplay() {
+      clearInterval(timer);
+      startAutoplay();
+    }
+
+    if (ctaExplore) ctaExplore.onclick = () => goTo(1);
+
+    mobileToggle.onclick = () => {
+      mobileMenu.classList.toggle("hidden");
+    };
+
+    show(0);
+    startAutoplay();
+  }());
+</script>
+
+</body>
+</html>

@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>NUKe : by Turubai</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Tailwind Config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            baseblack: "#0e0e0f",
+            ember: "#d12a2a",
+            ochre: "#c48a2e",
+            tealdeep: "#0f6a63",
+            graysoft: "#939393"
+          },
+          fontFamily: {
+            display: ["Impact", "Anton", "Arial Black", "sans-serif"],
+            body: ["Inter", "system-ui"],
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    .grunge {
+      background-image: url('/img/grunge-texture-placeholder.png');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.16;
+      pointer-events: none;
+    }
+
+    .grunge-text 
+    {
+      position: relative;
+      letter-spacing: -0.04em;
+      text-shadow:
+        1.2px 0 rgba(255,255,255,0.08),
+        -1.2px 0 rgba(0,0,0,0.45),
+        0 1px rgba(0,0,0,0.35);
+    }
+
+    .grunge-text::after 
+    {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      top: 1px;
+      width: 100%;
+      color: rgba(0,0,0,0.35);
+      z-index: -1;
+   }
+
+
+    .sticky-note {
+      background: #f6f1c7;
+      border-radius: 4px;
+      box-shadow: 0 8px 14px rgba(0,0,0,0.35);
+      position: relative;
+      overflow: hidden;
+    }
+    .sticky-note:before {
+      content: "";
+      position: absolute;
+      top: -14px;
+      right: 50%;
+      transform: translateX(50%);
+      width: 48px;
+      height: 24px;
+      background: #f1e89c;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.25);
+    }
+    .hover-glitch:hover {
+    animation: glitch 0.4s steps(4, end);
+  }
+
+  @keyframes glitch {
+    0% { transform: translate(0); }
+    25% { transform: translate(-1px, 1px); }
+    50% { transform: translate(1px, -1px); }
+    75% { transform: translate(-1px, 0); }
+    100% { transform: translate(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    animation: reveal 0.8s ease-out forwards;
+  }
+
+  @keyframes reveal {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  </style>
+</head>
+
+<body class="bg-baseblack text-gray-200 antialiased">
+
+<!-- ░░ HEADER ░░ -->
+<header class="fixed top-0 left-0 right-0 z-40">
+  <nav class="backdrop-blur-xl bg-black/40 border-b border-white/5">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-tealdeep to-ember flex items-center justify-center text-white font-bold tracking-widest">T</div>
+          <div class="hidden sm:block">
+            <div class="text-sm font-semibold tracking-wide text-gray-100">Turubai</div>
+            <div class="text-xs text-gray-500/80">Tribe & Lab</div>
+          </div>
+        </a>
+
+        <!-- Navigation -->
+        <div class="hidden md:flex items-center gap-8">
+          <a href="tribe.html" class="text-sm hover:text-tealdeep transition">Tribe</a>
+          <a href="lab.html" class="text-sm hover:text-ochre transition">Lab</a>
+          <a href="nuke.html" class="text-sm hover:text-ember transition">NUKe</a>
+          <a href="barakoa.html" class="text-sm hover:text-ochre transition">Barakoa</a>
+
+        </div>
+
+        <!-- Mobile toggle -->
+        <button id="mobileToggle" class="md:hidden p-2 rounded-md hover:bg-white/10">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
+          </svg>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="md:hidden hidden border-t border-white/5 bg-black/60">
+      <div class="px-4 py-4 flex flex-col gap-3">
+        <a href="tribe.html" class="py-1 hover:text-tealdeep transition">Tribe</a>
+        <a href="lab.html" class="py-1 hover:text-ochre transition">Lab</a>
+        <a href="about.html" class="py-1 hover:text-ember transition">About</a>
+        <a href="#slides" class="py-1">Explore</a>
+      </div>
+    </div>
+
+  </nav>
+</header>
+
+
+
+<!-- ░░░ HERO SECTION ░░░ -->
+<section class="relative w-full overflow-hidden bg-baseblack pt-40 pb-36 px-6">
+
+  <!-- Floating left context -->
+  <div class="absolute top-24 left-6 md:left-16 max-w-xs z-20">
+    <p class="text-sm font-bold text-ember uppercase tracking-wide">Turubai Lab Presents</p>
+    <p class="text-xs text-graysoft leading-snug mt-1">
+      A creative engine for neo-urban<br>expression & experimentation.
+    </p>
+  </div>
+
+  <!-- Floating right context -->
+  <div class="absolute bottom-24 right-6 md:right-16 max-w-xs text-right z-20">
+    <p class="text-xs text-graysoft leading-snug">
+      Movement-led research,<br>performance-tech studies,<br>cultural disruption work.<br>
+    </p>
+  </div>
+
+  <!-- CENTER MAIN HEADLINE --> 
+  <div class="col-span-12 text-center mt-36"> 
+    <h2 class="text-4xl sm:text-6xl font-extrabold leading-tight text-white max-w-3xl mx-auto "> 
+      A Chamber Conversation<br> <span class="text-ember">On Neo-Culture, Creativity,<br>
+        Inspiration & Power</span> </h2> 
+  </div>
+
+</section>
+
+<!-- ░░░ NUKE REVEAL SECTION (IMPROVED) ░░░ -->
+<section class="relative w-full overflow-hidden bg-baseblack pt-10 pb-24 px-6">
+
+  <!-- GIANT “NUKE” BACKGROUND moved UP -->
+  <h1 class="absolute top-0 left-0 right-0 flex justify-center items-start
+             font-display font-black text-[28vw] leading-none
+             text-ember/60 select-none pointer-events-none mt-[-4rem] reveal">
+    NUKe
+  </h1>
+
+  <!-- Image collage -->
+  <div class="relative z-20 max-w-7xl mx-auto grid grid-cols-12 gap-6 mt-20">
+
+    <!-- Left tilted image -->
+    <div class="col-span-12 md:col-span-4 mt-8 flex justify-center md:justify-start">
+      <div class="rotate-[-8deg] w-64 h-72 bg-gray-900 border border-white/10 rounded-md shadow-xl overflow-hidden">
+        <img src="/img/nuke-photo1-placeholder.jpg" class="w-full h-full object-cover opacity-80 hover-glitch" alt="">
+      </div>
+    </div>
+
+    <!-- Right tilted image -->
+    <div class="col-span-12 md:col-span-4 mt-8 flex justify-center md:justify-end">
+      <div class="rotate-[5deg] w-64 h-72 bg-gray-900 border border-white/10 rounded-md shadow-xl overflow-hidden">
+        <img src="/img/nuke-photo2-placeholder.jpg" class="w-full h-full object-cover opacity-80 hover-glitch" alt="">
+      </div>
+    </div>
+
+    <!-- Tall right image -->
+    <div class="col-span-12 md:col-span-4 mt-8 md:mt-0 flex justify-center md:justify-end">
+      <div class="w-full h-[28rem] bg-gray-800 border border-white/10 rounded-lg overflow-hidden">
+        <img src="/img/nuke-tall-placeholder.jpg" class="w-full h-full object-cover opacity-90 hover-glitch" alt="">
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Much tighter SPLIT definition -->
+  <div class="relative z-20 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
+
+    <!-- LEFT: What is NUKe -->
+    <div class="bg-baseblack border border-white/10 shadow-[0_18px_40px_rgba(0,0,0,0.8)] rotate-[-1deg] p-8 flex flex-col justify-center">
+      <p class="text-4xl font-bold text-ember uppercase grunge-text"
+        data-text="What is NUKe?">
+        What is <span class="text-white">NUKe?</span>
+      </p>
+      <p class="text-lg text-graysoft mt-2 leading-relaxed max-w-sm">
+        A neo-creative organism inside Turubai — where performance,
+        experimentation and culture collide. NUKe holds the mess,
+        the humour, the politics, and the pulse of our moment.
+        NUKe holds the mess,
+        the humour, the politics, and the pulse of our moment.
+        NUKe holds the mess,
+        the humour, the politics, and the pulse of our moment.
+      </p>
+    </div>
+
+    <!-- RIGHT: Two sticky notes tightly grouped -->
+    <div class="flex items-start space-x-[-20px] md:justify-end">
+
+      <div class="sticky-note w-60 h-60 rotate-[-3deg]">
+        <img src="/img/sticky1.png"
+             class="w-full h-full object-cover opacity-95 hover-glitch"
+             alt="">
+      </div>
+
+      <div class="sticky-note w-60 h-60 rotate-[4deg] mt-6">
+        <img src="/img/sticky2.png"
+             class="w-full h-full object-cover opacity-95 hover-glitch"
+             alt="">
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Bottom audience image -->
+  <div class="relative z-20 max-w-7xl mx-auto mt-16">
+    <div class="w-full h-72 bg-gray-900 border border-white/10 rounded-lg overflow-hidden">
+      <img src="/img/nuke-audience-placeholder.jpg"
+           class="w-full h-full object-cover opacity-90" alt="img5">
+    </div>
+  </div>
+
+</section>
+
+<!-- Bottom red manifesto block -->
+<section class="relative bg-baseblack py-24 px-6">
+  <div class="max-w-7xl mx-auto">
+
+    <h3 class="text-3xl sm:text-4xl md:text-5xl font-bold text-ember mb-8 grunge-text"
+      data-text="A Monoshow Where The Three Worlds Meet">
+      A Monoshow Where<br>The Three Worlds Meet
+    </h3>
+
+    <p class="text-graysoft text-base sm:text-lg leading-relaxed tracking-wide
+              max-w-none md:columns-2 md:gap-16">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat vitae
+      voluptate quasi labore fuga rerum illum libero aspernatur? Possimus magnam
+      minima sapiente explicabo fuga voluptatum rerum nulla aliquid porro cum.
+      <br><br>
+      This is not a performance that explains itself. It unfolds. It contradicts.
+      It laughs. It breaks. NUKe lives in the space between lecture and ritual,
+      between humour and urgency, between the body and the idea.
+      <br><br>
+      What you witness is not a finished object, but a living inquiry — a chamber
+      where thought, movement, sound and silence negotiate meaning in real time.
+    </p>
+
+  </div>
+</section>
+
+
+<!-- MODES -->
+<section class="relative py-24 px-8 max-w-6xl mx-auto">
+
+  <h3 class="text-center text-4xl font-bold tracking-tight mb-14 text-ember grunge-text"
+    data-text="Modes of Action">
+    Modes of Action
+  </h3>
+
+  <div class="grid grid-cols-1 sm:grid-cols-3 gap-10">
+
+    <div class="bg-white/5 border border-white/10 rounded-xl p-8 text-center hover-glitch">
+      <h4 class="text-xl font-bold text-white mb-3">Conscious Gigs</h4>
+      <p class="text-graysoft text-sm leading-relaxed">
+        Performances, activations, live sessions.
+      </p>
+    </div>
+
+    <div class="bg-white/5 border border-white/10 rounded-xl p-8 text-center hover-glitch">
+      <h4 class="text-xl font-bold text-white mb-3">Collab Work</h4>
+      <p class="text-graysoft text-sm leading-relaxed">
+        Creative partnerships across disciplines.
+      </p>
+    </div>
+
+    <div class="bg-white/5 border border-white/10 rounded-xl p-8 text-center hover-glitch">
+      <h4 class="text-xl font-bold text-white mb-3">Empowerment Initiatives</h4>
+      <p class="text-graysoft text-sm leading-relaxed">
+        Workshops, mentorships, tech-for-culture programs.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="py-12 text-center text-graysoft text-sm">
+  NUKe © Turubai Lab — Built for creative movement
+</footer>
+
+
+</body>
+</html>

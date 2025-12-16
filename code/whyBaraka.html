@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>How You Come In — Barakoa Visual Design Curator</title>
+
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        baseblack: "#0e0e0f",
+        ember: "#d12a2a",
+        ochre: "#c48a2e",
+        tealdeep: "#0f6a63",
+        bone: "#e8e4d8",
+        graysoft: "#8c8c8c"
+      },
+      fontFamily: {
+        display: ["Impact","Anton","Arial Black","sans-serif"],
+        body: ["Inter","system-ui"]
+      }
+    }
+  }
+}
+</script>
+
+
+<style>
+.rule { height:1px; background:rgba(255,255,255,.12); margin:4rem 0; }
+.letter p { margin-bottom:1.8rem; line-height:1.7; }
+.side-nav a { display:block; margin-bottom:.75rem; opacity:.6; }
+.side-nav a:hover { opacity:1; }
+
+
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.9);
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+.modal.show { display: flex; }
+
+
+.modal-box {
+  background: #0e0e0f;
+  padding: 3rem;
+  max-width: 900px;
+  width: 90%;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+</style>
+</head>
+
+
+<body class="bg-baseblack text-gray-200 font-body antialiased">
+
+
+<!-- SIDE NAV -->
+<aside class="fixed top-0 left-0 h-full w-56 px-6 py-16 border-r border-white/10 side-nav hidden lg:block">
+  <p class="text-xs uppercase tracking-widest text-graysoft mb-6">On this page</p>
+  <a href="#letter">How You Come In</a>
+  <a href="#context">Context</a>
+  <a href="#role">Your Role</a>
+  <a href="#where">Where You Come In</a>
+  <a href="#manage">What You Manage</a>
+  <a href="#ask">Our Ask</a>
+  <a href="#energy">Energy Exchange</a>
+  <a href="#close">Close</a>
+</aside>
+
+
+<main class="ml-0 lg:ml-56 px-8 sm:px-12 md:px-20 max-w-[1100px]">
+
+
+<!-- LETTER -->
+<section id="letter" class="pt-32 pb-24">
+  <p class="uppercase tracking-widest text-xs text-graysoft mb-4">How You Come In</p>
+  <h1 class="font-display text-[4.5rem] leading-none text-bone mb-10">
+    We’d like to build with you
+  </h1>
+
+
+  <div class="letter max-w-2xl pt-10">
+    <p>
+      We are <strong>Barakoa</strong> — a live cultural system built inside
+      <a href="index.html" class="underline text-ember">Turubai</a> and
+      <a href="nuke.html" class="underline text-ember">NUKe</a>.
+    </p>
+
+
+    <p>
+      Barakoa treats sound, movement, space, and visuals as equal languages.
+      For this edition, visuals are not decoration —
+      they are part of the rhythm.
+    </p>
+
+
+    <p>
+      We’re inviting a <strong>Visual Digital Design Curator & Manager</strong>
+      to help shape how Barakoa is seen, felt, and remembered —
+      before, during, and after the gig.
+    </p>
+  </div>
+</section>
+
+
+<div class="rule"></div>
+
+
+<!-- CONTEXT -->
+<section id="context" class="pb-24">
+  <h2 class="font-display text-5xl text-bone mb-10">Context</h2>
+
+
+  <div class="letter max-w-2xl">
+    <p>
+      Barakoa is not just an event.
+      It is a living system — unfolding through sound, movement, space, and image.
+    </p>
+
+
+    <p>
+      Visuals are not added last.
+      They help set tempo, emotional tone, and memory.
+    </p>
+
+
+    <p>
+      This role exists to protect that integrity.
+    </p>
+  </div>
+</section>
+
+
+<div class="rule"></div>
+
+
+<!-- ROLE -->
+<section id="role" class="pb-24">
+  <h2 class="font-display text-5xl text-bone mb-10">How You Come In</h2>
+
+
+  <div class="letter max-w-2xl">
+    <p>
+      You come in as a <strong>curator</strong>, not a content executor.
+    </p>
+
+
+    <p>Your role is to:</p>
+
+
+    <ul class="list-disc ml-6 space-y-3 text-gray-300">
+      <li>Translate Barakoa philosophy and NiloFunk sound into visual language</li>
+      <li>Hold visual coherence across platforms, moments, and collaborators</li>
+      <li>Guide aesthetic direction rather than chase trends</li>
+    </ul>
+
+
+    <p>
+      This is not about volume.
+      It’s about clarity, restraint, and intention.
+    </p>
+  </div>
+</section>
+
+
+<div class="rule"></div>
+
+
+<!-- WHERE -->
+<section id="where" class="pb-24">
+  <h2 class="font-display text-5xl text-bone mb-10">Where You Come In</h2>
+
+
+  <div class="letter max-w-2xl">
+    <p class="font-bold">1. Pre-Gig — Narrative & Build-Up</p>
+    <ul class="list-disc ml-6 space-y-2 text-gray-300">
+      <li>Shape the visual tone of the Barakoa gig</li>
+      <li>Guide how Barakoa, NiloFunk, and collaborators are introduced</li>
+      <li>Curate key visuals, posters, motion snippets, and social rhythm</li>
+    </ul>
+
+
+    <p class="font-bold mt-8">2. During the Gig — Live Translation</p>
+    <ul class="list-disc ml-6 space-y-2 text-gray-300">
+      <li>Define how visuals behave during the experience</li>
+      <li>Coordinate screens, lighting direction, and live capture logic</li>
+      <li>Ensure visuals respond to sound, not overpower it</li>
+    </ul>
+
+
+    <p class="font-bold mt-8">3. Post-Gig — Memory & Documentation</p>
+    <ul class="list-disc ml-6 space-y-2 text-gray-300">
+      <li>Curate edits, stills, and short-form visuals</li>
+      <li>Protect the narrative from shallow recap content</li>
+    </ul>
+  </div>
+</section>
+
+
+<div class="rule"></div>
+
+
+<!-- MANAGE -->
+<section id="manage" class="pb-24">
+  <h2 class="font-display text-5xl text-bone mb-10">What You Manage</h2>
+
+
+  <div class="letter max-w-2xl">
+    <ul class="list-disc ml-6 space-y-3 text-gray-300">
+      <li>Visual rhythm across Barakoa, Zen Keg, and collaborators</li>
+      <li>Alignment between sound, space, and visual language</li>
+      <li>A small, intentional visual pipeline — not chaos</li>
+    </ul>
+  </div>
+</section>
+
+
+<div class="rule"></div>
+
+
+<!-- ASK -->
+<section id="ask" class="pb-24">
+  <h2 class="font-display text-5xl text-bone mb-10">Our Ask</h2>
+
+
+  <div class="letter max-w-2xl">
+    <ul class="list-disc ml-6 space-y-3 text-gray-300">
+      <li>1 intentional visual review deliverable per month</li>
+      <li>1 final visual output per month</li>
+      <li>1 alignment meeting per month</li>
+      <li>Commitment to process over hype</li>
+    </ul>
+
+
+    <p>This is not a daily-content role.</p>
+  </div>
+</section>
+
+
+<div class="rule"></div>
+
+
+<!-- ENERGY -->
+<section id="energy" class="pb-24">
+  <h2 class="font-display text-5xl text-bone mb-10">Energy Exchange</h2>
+
+
+  <div class="letter max-w-2xl">
+    <p>Barakoa / NUKe: minimum <strong>KES 10,000 / month</strong></p>
+    <p>Turubai Lab: minimum <strong>KES 8,000 / month</strong></p>
+    <p>Duration: minimum 5 months</p>
+    <p>Structure: collaborative, not extractive</p>
+  </div>
+</section>
+
+
+<div class="rule"></div>
+
+
+<!-- CLOSE -->
+<section id="close" class="pb-40">
+  <h2 class="font-display text-5xl text-bone mb-10">Closing</h2>
+
+
+  <div class="letter max-w-2xl">
+  <p>If this resonates...we build together.</p>
+    <p>Let us know if this aligns and we’ll set up a virtual meet.</p>
+  </div>
+</section>
+
+
+<footer class="pb-12 text-sm text-graysoft">
+  <a href="nuke.html" class="underline mr-4">NUKe</a>
+  <a href="index.html" class="underline mr-4">turubai</a>
+  <a href="barakoa.html" class="underline">barakoa</a>
+</footer>
+
+
+</main>
+
+
+</body>
+</html>
+

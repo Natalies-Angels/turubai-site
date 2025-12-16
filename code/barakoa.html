@@ -1,0 +1,980 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Barakoa — For the Culture</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        baseblack: "#0e0e0f",
+        ember: "#d12a2a",
+        ochre: "#c48a2e",
+        tealdeep: "#0f6a63",
+        bone: "#e8e4d8",
+      },
+      fontFamily: {
+        display: ["Impact","Anton","Arial Black","sans-serif"],
+        body: ["Inter","system-ui"]
+      }
+    }
+  }
+}
+</script>
+
+<style>
+/* GRAIN */
+.grain {
+  pointer-events:none;
+  position:fixed;
+  inset:0;
+  opacity:.08;
+  mix-blend-mode:overlay;
+  z-index:50;
+}
+
+/* DISTRESSED BLOCK */
+.block {
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:0 22px 50px rgba(0,0,0,.85);
+}
+
+/* STATEMENT STRIP */
+.statement {
+  font-weight:900;
+  letter-spacing:.02em;
+  padding:.5rem 1rem;
+  display:inline-block;
+  transform:rotate(-2deg);
+  box-shadow:0 8px 18px rgba(0,0,0,.6);
+}
+
+/* IMAGE GRUNGE */
+.photo {
+  filter:contrast(1.15) saturate(.9);
+}
+
+/* FLOAT */
+.float {
+  animation:float 6s ease-in-out infinite;
+}
+@keyframes float {
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-8px)}
+}
+/* RUGGED HEADLINE */
+.rugged {
+  text-shadow:
+    2px 0 rgba(255,255,255,0.08),
+    -2px 0 rgba(0,0,0,0.6),
+    0 2px rgba(0,0,0,0.5);
+}
+
+/* MENU ITEM */
+.menu-item {
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+/* SLIDE PANEL */
+.side-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(600px, 100%);
+  height: 100%;
+  background: #0e0e0f;
+  border-left: 1px solid rgba(255,255,255,0.1);
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(.4,0,.2,1);
+  z-index: 60;
+}
+
+.side-panel.active {
+  transform: translateX(0);
+}
+
+/* JOIN CTA */
+.join-cta {
+  position: sticky;
+  bottom: 0;
+  background: #c48a2e;
+  color: #0e0e0f;
+  font-weight: 900;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+}
+/* event flow MODAL */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(14,14,15,0.9);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 70;
+}
+
+.modal.active {
+  display: flex;
+}
+
+.modal-box {
+  max-width: 900px;
+  width: 90%;
+  background: #0e0e0f;
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 2rem;
+  position: relative;
+}
+
+</style>
+</head>
+
+<body class="bg-baseblack text-gray-200 font-body antialiased">
+
+<!-- GRAIN -->
+<div class="grain">
+<svg width="100%" height="100%">
+<filter id="noise">
+<feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3"/>
+</filter>
+<rect width="100%" height="100%" filter="url(#noise)"/>
+</svg>
+</div>
+
+<header class="fixed top-0 left-0 right-0 z-40">
+  <nav class="backdrop-blur-xl bg-black/40 border-b border-white/5">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-tealdeep to-ember flex items-center justify-center text-white font-bold tracking-widest">T</div>
+          <div class="hidden sm:block">
+            <div class="text-sm font-semibold tracking-wide text-gray-100">Turubai</div>
+            <div class="text-xs text-gray-500/80">Tribe & Lab</div>
+          </div>
+        </a>
+
+        <!-- Navigation -->
+        <div class="hidden md:flex items-center gap-8">
+          <a href="tribe.html" class="text-sm hover:text-tealdeep transition">Tribe</a>
+          <a href="lab.html" class="text-sm hover:text-ochre transition">Lab</a>
+          <a href="nuke.html" class="text-sm hover:text-ember transition">NUKe</a>
+          <a href="barakoa.html" class="text-sm hover:text-ochre transition">Barakoa</a>
+
+        </div>
+
+        <!-- Mobile toggle -->
+        <button id="mobileToggle" class="md:hidden p-2 rounded-md hover:bg-white/10">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
+          </svg>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="md:hidden hidden border-t border-white/5 bg-black/60">
+      <div class="px-4 py-4 flex flex-col gap-3">
+        <a href="tribe.html" class="py-1 hover:text-tealdeep transition">Tribe</a>
+        <a href="lab.html" class="py-1 hover:text-ochre transition">Lab</a>
+        <a href="about.html" class="py-1 hover:text-ember transition">About</a>
+        <a href="#slides" class="py-1">Explore</a>
+      </div>
+    </div>
+
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="relative min-h-screen px-6 flex flex-col justify-center overflow-hidden">
+
+<h1 class="font-display text-[22vw] leading-none text-bone/90">
+BARAKOA
+</h1>
+
+<div class="absolute top-24 left-6 bg-ochre text-baseblack statement">
+LOVE, FEAR, & THE SILENCE
+</div>
+
+<p class="max-w-md mt-8 text-gray-300 text-sm">
+An avante-garde masked cultural rupture. <br>  
+Where art and ritual collide in a night of <br> 
+transformative performance, underground sound, <br>
+and collective liberation. <br>
+</p>
+
+<!-- HERO IMAGE -->
+<div class="absolute right-6 bottom-6 w-72 rotate-[3deg] block float">
+<img src="assets\Masked Resilience by Humble Homage.jfif"
+     class="photo w-full h-full object-cover"
+     alt="hero-image">
+</div>
+
+</section>
+
+<!-- SECTION: WHAT BARAKOA IS -->
+<section class="relative py-32 px-6 bg-black">
+
+<h2 class="font-display text-6xl text-bone mb-20">
+BARAKOA IS A MASKERADE
+</h2>
+
+<div class="relative max-w-6xl mx-auto grid md:grid-cols-2 gap-16">
+
+<!-- IMAGE -->
+<div class="relative">
+<img src="assets\Camden NJ 1980s Black Urban Life - Vintage Street Photography Print, African American History Wall Art, 80s Nostalgia, Hip Hop Culture.jfif"
+     class="photo w-full h-[30rem] object-cover block rotate-[-2deg]"
+     alt="">
+
+<div class="absolute -top-6 -left-4 bg-ochre text-baseblack statement">
+MASKS AS LANGUAGE
+</div>
+
+<div class="absolute bottom-6 -right-6 bg-bone text-baseblack statement rotate-[2deg]">
+THEATRE WITHOUT STAGE
+</div>
+</div>
+
+<!-- TEXT -->
+<div class="space-y-6">
+
+<div class="bg-tealdeep text-bone statement rotate-[1deg]">
+FASHION · PERFORMANCE · RITUAL
+</div>
+
+<div class="bg-ochre text-baseblack statement rotate-[-1deg]">
+ANONYMITY AS FREEDOM
+</div>
+
+<div class="bg-black text-gray-200 block p-6 rotate-[1deg] leading-relaxed">
+Barakoa is not a party.  
+It is a living maskerade — where fashion, art, theatre and underground sound collapse into one ritual body.
+<br><br>
+Guests enter masked, not to hide — but to *arrive differently*.
+Each mask carries a posture, a power, a way of moving through the night.
+<br><br>
+This gathering opens the doorway into <strong>Perpetration Archive (PA)</strong> —  
+a deeper mythology of six masks, six forces, and the cultural memory they carry.
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- EVENTS -->
+<section class="px-6 py-32 bg-baseblack">
+
+<h2 class="font-display text-6xl text-bone mb-16">
+THE RITUAL UNFOLDS TWICE
+</h2>
+
+<div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+
+<!-- FEB -->
+<div onclick="openEvent('feb')" class="cursor-pointer bg-ochre text-baseblack p-12 block rotate-[-2deg]">
+<h3 class="font-display text-5xl mb-4">FEBRUARY</h3>
+<p class="text-sm">
+A teaser rupture.  
+An initiation into the mask.
+</p>
+</div>
+
+<!-- JUNE -->
+<div onclick="openEvent('june')" class="cursor-pointer bg-tealdeep text-bone p-12 block rotate-[2deg]">
+<h3 class="font-display text-5xl mb-4">JUNE</h3>
+<p class="text-sm">
+The full ceremony.  
+All masks. All bodies.
+</p>
+</div>
+
+</div>
+
+<!-- POP-UP BOXES PARAGRAPH -->
+<div class="mt-12 border border-white/10 shadow-[0_18px_40px_rgba(0,0,0,0.8)] rotate-[-1deg] p-8 flex flex-col justify-center">
+  <p class="text-lg text-gray-300 leading-relaxed">
+    This will be a pop-up gig with 
+    <span
+      class="text-ember font-bold cursor-pointer hover:underline"
+      onclick="openModal('allBoxesModal')">
+      boxes
+    </span>.
+    Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+    Alias aliquid nulla eum dolorem quis ratione possimus voluptate, 
+    nobis pariatur quos libero odit sit iure adipisci exercitationem 
+    natus aliquam laboriosam quae.
+    <br>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Error recusandae 
+    qui similique, consequatur dolorum ut magni reprehenderit illum temporibus
+    ratione veniam dolores id eaque doloribus amet? Perspiciatis veniam 
+    eius placeat.
+  </p>
+</div>
+
+</section>
+
+<!-- FOUNDERS -->
+<section class="bg-black py-32 px-6 relative">
+
+<h2 class="font-display text-6xl text-bone mb-16 rugged text-center ">
+BUILT BY THE CULTURE...
+</h2>
+
+<div class="max-w-6xl mx-auto space-y-6">
+
+<!-- PANDORA'S BOX -->
+<div class="menu-item bg-baseblack p-6 block rotate-[-1deg]"
+     data-panel="pandoras_box"
+     data-group="founders">
+  <h3 class="font-display text-4xl text-bone rugged">
+    PANDORA'S BOX
+  </h3>
+</div>
+
+<!-- ZEN KEG -->
+<div class="menu-item bg-ochre p-6 block rotate-[1deg]"
+     data-panel="zen_keg"
+     data-group="founders">
+  <h3 class="font-display text-4xl text-baseblack rugged">
+    ZEN KEG
+  </h3>
+</div>
+
+<!--  -->
+<div class="menu-item bg-tealdeep p-6 block rotate-[-2deg]"
+    data-group="founders"
+     data-panel="fabri">
+  <h3 class="font-display text-4xl text-bone rugged">
+    FABRI
+  </h3>
+</div>
+
+<!-- QODED -->
+<div class="menu-item bg-bone p-6 block rotate-[2deg]"
+    data-group="founders"
+     data-panel="qoded">
+  <h3 class="font-display text-4xl text-baseblack rugged">
+    QODED
+  </h3>
+</div>
+
+</div>
+</section>
+
+<!-- COLLABS -->
+<section class="bg-black py-32 px-6 relative">
+
+<h2 class="font-display text-6xl text-bone mb-16 rugged text-center ">
+THROUGH THE CULTURE
+</h2>
+
+<div class="max-w-6xl mx-auto space-y-6">
+
+<!-- PARTNERS -->
+<div class="menu-item bg-baseblack p-6 block rotate-[-1deg]"
+     data-group="collabs"
+     data-panel="partners">
+  <h3 class="font-display text-4xl text-bone rugged ">
+    PARTNERS
+  </h3>
+</div>
+
+<!-- SPONSORS -->
+<div class="menu-item bg-ochre p-6 block rotate-[1deg]"
+    data-group="collabs"
+     data-panel="sponsors">
+  <h3 class="font-display text-4xl text-baseblack rugged">
+    SPONSORS
+  </h3>
+</div>
+
+<!-- ALLIES -->
+<div class="menu-item bg-tealdeep p-6 block rotate-[-2deg]"
+    data-group="collabs"
+     data-panel="allies">
+  <h3 class="font-display text-4xl text-bone rugged">
+    ALLIES
+  </h3>
+</div>
+
+<!-- CREATORS -->
+<div class="menu-item bg-bone p-6 block rotate-[2deg]"
+    data-group="collabs"
+     data-panel="creators">
+  <h3 class="font-display text-4xl text-baseblack rugged">
+    CREATORS
+  </h3>
+</div>
+
+<!-- AMPLIFIERS -->
+<div class="menu-item bg-bone p-6 block rotate-[2deg]"
+    data-group="collabs"
+     data-panel="amplifiers">
+  <h3 class="font-display text-4xl text-baseblack rugged">
+    AMPLIFIERS
+  </h3>
+</div>
+
+</div>
+</section>
+
+<!-- GIVE BACK -->
+<section class="grid md:grid-cols-2">
+
+<div class="bg-black">
+<img src="assets\138K views · 8_6K reactions _ Renata Whedbee on Reels _ Facebook.jfif"
+     class="photo w-full h-full object-cover"
+     alt="">
+</div>
+
+<div class="bg-ochre text-baseblack p-12 flex flex-col justify-center">
+<h3 class="font-display text-4xl mb-4">
+THIS NIGHT CIRCULATES
+</h3>
+<p class="text-sm">
+Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cumque totam amet, 
+sint rerum ullam ipsa porro eveniet velit, placeat doloribus libero. Nesciunt 
+aliquam repellat quae fuga hic sequi consequuntur enim? <BR></BR>
+
+Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cumque totam amet, 
+sint rerum ullam ipsa porro eveniet velit, placeat doloribus libero. Nesciunt 
+aliquam repellat quae fuga hic sequi consequuntur enim?
+</p>
+</div>
+
+</section>
+
+<!-- CTA -->
+<section class="py-40 text-center">
+
+<h2 class="font-display text-7xl text-bone mb-8">
+ENTER THE MASKERADE
+</h2>
+
+<a href="tickets.html"
+   class="inline-block px-14 py-5 bg-tealdeep text-bone font-bold tracking-wide
+          hover:bg-ochre hover:text-baseblack transition">
+GET A TICKET
+</a>
+
+</section>
+
+<footer class="py-12 text-center text-gray-500 text-xs">
+Barakoa — A Turubai Lab Ritual
+</footer>
+
+<!-- FOUNDERS SIDE PANEL -->
+<div id="foundersSidePanel" class="side-panel p-8 flex flex-col">
+  <button class="mb-6 text-gray-400 text-sm" onclick="closePanels()">✕ CLOSE</button>
+
+  <h3 id="foundersTitle" class="font-display text-4xl text-bone mb-4 rugged"></h3>
+  <p id="foundersText" class="text-sm text-gray-300 leading-relaxed"></p>
+
+  <div class="join-cta">
+    BE PART OF THE <span id="foundersCrew"></span> CREW
+  </div>
+</div>
+
+<!-- COLLABS SIDE PANEL -->
+<div id="collabsSidePanel" class="side-panel p-8 flex flex-col">
+  <button class="mb-6 text-gray-400 text-sm" onclick="closePanels()">✕ CLOSE</button>
+
+  <h3 id="collabsTitle" class="font-display text-4xl text-bone mb-4 rugged"></h3>
+  <p id="collabsText" class="text-sm text-gray-300 leading-relaxed"></p>
+
+  <div class="join-cta">
+    JOIN AS <span id="collabsCrew"></span>
+  </div>
+</div>
+
+
+<!-- EVENT FLOW MODALS -->
+ <!-- FEB EVENT -->
+<div id="febEventModal" class="modal">
+  <div class="modal-box">
+
+    <button onclick="closeEvent('feb')" class="text-gray-400 mb-6">✕ CLOSE</button>
+
+    <h3 id="eventTitle" class="font-display text-5xl text-bone mb-8"></h3>
+
+    <div class="grid md:grid-cols-4 gap-4">
+      <div onclick="openModal('meetGreetModal')" class="block p-4 cursor-pointer">meet & greet</div>
+      <div onclick="openModal('soundMicCheckModal')" class="block p-4 cursor-pointer">sound & mic check</div>
+      <div onclick="openModal('fashionShowModal')" class="block p-4 cursor-pointer">fashion show</div>
+      <div onclick="openModal('playRehearsalsModal')" class="block p-4 cursor-pointer">play rehearsals</div>
+      <div onclick="openModal('djSetModal')" class="block p-4 cursor-pointer">DJ set</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- MEET & GREET -->
+ <div id="meetGreetModal" class="modal">
+  <div class="modal-box">
+
+    <button onclick="closeModal('meetGreetModal')" class="text-gray-400 mb-6">
+      ✕ CLOSE
+    </button>
+
+    <h3 class="font-display text-4xl text-bone mb-4">
+      MEET & GREET
+    </h3>
+
+    <p class="text-sm text-gray-300 leading-relaxed">
+      An intimate arrival chamber for collaborators, performers and early guests.
+      This is where masks first activate and social hierarchies dissolve.
+    </p>
+
+  </div>
+</div>
+
+<!-- MIC & SOUND CHECK -->
+ <div id="soundMicCheckModal" class="modal">
+  <div class="modal-box">
+
+    <button onclick="closeModal('soundMicCheckModal')" class="text-gray-400 mb-6">
+      ✕ CLOSE
+    </button>
+
+    <h3 class="font-display text-4xl text-bone mb-4">
+      SOUND & MIC CHECK
+    </h3>
+
+    <p class="text-sm text-gray-300 leading-relaxed">
+      The sonic architecture is dialed in.
+      The sound system is tested and calibrated.
+    </p>
+
+  </div>
+</div>
+
+<!-- FASHION SHOW -->
+ <div id="fashionShowModal" class="modal">
+  <div class="modal-box">
+
+    <button onclick="closeModal('fashionShowModal')" class="text-gray-400 mb-6">
+      ✕ CLOSE
+    </button>
+
+    <h3 class="font-display text-4xl text-bone mb-4">
+      FASHION SHOW
+    </h3>
+
+    <p class="text-sm text-gray-300 leading-relaxed">
+      A runway presentation of avant-garde masks and attire.
+      Each look embodies a unique energy and narrative.
+    </p>
+
+  </div>
+</div>
+
+<!-- PLAY REHEARSALS -->
+ <div id="playRehearsalsModal" class="modal">
+  <div class="modal-box">
+
+    <button onclick="closeModal('playRehearsalsModal')" class="text-gray-400 mb-6">
+      ✕ CLOSE
+    </button>
+
+    <h3 class="font-display text-4xl text-bone mb-4">
+      PLAY REHEARSALS
+    </h3>
+
+    <p class="text-sm text-gray-300 leading-relaxed">
+      Interactive theatre exercises that break the ice and immerse guests into the ritual.
+      Movement, presence and spontaneity are encouraged.
+    </p>
+
+  </div>
+</div>
+
+<!-- DJ SET -->
+ <div id="djSetModal" class="modal">
+  <div class="modal-box">
+
+    <button onclick="closeModal('djSetModal')" class="text-gray-400 mb-6">
+      ✕ CLOSE
+    </button>
+
+    <h3 class="font-display text-4xl text-bone mb-4">
+      DJ SET
+    </h3>
+
+    <p class="text-sm text-gray-300 leading-relaxed">
+      An underground DJ spins a transformative set to guide the ritual energy.
+      No commercial tracks. No spectatorship.
+    </p>
+
+  </div>
+</div>
+
+<!-- JUNE EVENT -->
+<div id="juneEventModal" class="modal">
+  <div class="modal-box">
+
+    <button onclick="closeEvent('june')" class="text-gray-400 mb-6">✕ CLOSE</button>
+
+    <h3 id="eventTitle" class="font-display text-5xl text-bone mb-8"></h3>
+
+    <div class="grid md:grid-cols-4 gap-4">
+      <div onclick="openModal('craftSessionModal')" class="block p-4 cursor-pointer">early craft dession</div>
+      <div onclick="openModal('saxSetModal')" class="block p-4 cursor-pointer">sax set</div>
+      <div onclick="openModal('indieFleaModal')" class="block p-4 cursor-pointer">indie artists + flea market</div>
+      <div onclick="openModal('dinnerModal')" class="block p-4 cursor-pointer">dinner</div>
+      <div onclick="openModal('interactiveTheatreModal')" class="block p-4 cursor-pointer">interactive theatre</div>
+      <div onclick="openModal('contemporaryEnsembleModal')" class="block p-4 cursor-pointer">contemporary ensemble</div>
+      <div onclick="openModal('silentDiscoModal')" class="block p-4 cursor-pointer">silent disco</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CRAFT SESSION -->
+ <div id="craftSessionModal" class="modal">
+  <div class="modal-box">
+
+    <button onclick="closeModal('craftSessionModal')" class="text-gray-400 mb-6">
+      ✕ CLOSE
+    </button>
+
+    <h3 class="font-display text-4xl text-bone mb-4">
+      CRAFT SESSION
+    </h3>
+
+    <p class="text-sm text-gray-300 leading-relaxed">
+      An early gathering for exclusive guests and creatives to do art as they craft beer, 
+      hold conversations, and prepare for the day ahead. 
+    </p>
+
+  </div>
+</div>
+
+<!-- SAX SET -->
+ <div id="saxSetModal" class="modal">
+  <div class="modal-box">
+
+    <button onclick="closeModal('saxSetModal')" class="text-gray-400 mb-6">
+      ✕ CLOSE
+    </button>
+
+    <h3 class="font-display text-4xl text-bone mb-4">
+      SAX SET
+    </h3>
+
+    <p class="text-sm text-gray-300 leading-relaxed">
+      A live saxophone performance that weaves through the event, 
+      adding layers of soulful melodies to the atmosphere.
+    </p>
+
+  </div>
+</div>
+
+<!-- INDIE AND FLEA -->
+ <div id="indieFleaModal" class="modal">
+  <div class="modal-box">
+
+    <button onclick="closeModal('indieFleaModal')" class="text-gray-400 mb-6">
+      ✕ CLOSE
+    </button>
+
+    <h3 class="font-display text-4xl text-bone mb-4">
+      MEET & GREET
+    </h3>
+
+    <p class="text-sm text-gray-300 leading-relaxed">
+      An indie artist market and flea market where guests can explore unique creations, 
+      vintage finds, and support local talent.
+    </p>
+
+  </div>
+</div>
+
+<!-- DINNER -->
+ <div id="dinnerModal" class="modal">
+  <div class="modal-box">
+
+    <button onclick="closeModal('dinnerModal')" class="text-gray-400 mb-6">
+      ✕ CLOSE
+    </button>
+
+    <h3 class="font-display text-4xl text-bone mb-4">
+      MEET & GREET
+    </h3>
+
+    <p class="text-sm text-gray-300 leading-relaxed">
+      A communal dining experience where guests share a meal, 
+      fostering connection and conversation.
+    </p>
+
+  </div>
+</div>
+
+<!-- INTERACTIVE THEATRE -->
+ <div id="interactiveTheatreModal" class="modal">
+  <div class="modal-box">
+
+    <button onclick="closeModal('interactiveTheatreModal')" class="text-gray-400 mb-6">
+      ✕ CLOSE
+    </button>
+
+    <h3 class="font-display text-4xl text-bone mb-4">
+      INTERACTIVE THEATRE
+    </h3>
+
+    <p class="text-sm text-gray-300 leading-relaxed">
+      A live theatre performance that shows the politics of
+       love and fear through audience interaction.
+    </p>
+
+  </div>
+</div>
+
+<!-- CONTEMPORARY ENSEMBLE -->
+ <div id="contemporaryEnsembleModal" class="modal">
+  <div class="modal-box">
+
+    <button onclick="closeModal('contemporaryEnsembleModal')" class="text-gray-400 mb-6">
+      ✕ CLOSE
+    </button>
+
+    <h3 class="font-display text-4xl text-bone mb-4">
+      CONTEMPORARY ENSEMBLE
+    </h3>
+    </h3>
+
+    <p class="text-sm text-gray-300 leading-relaxed">
+      A performance by a contemporary music ensemble, 
+      exploring themes of identity, transformation, and community.
+    </p>
+
+  </div>
+</div>
+
+<!-- SILENT DISCO -->
+ <div id="silentDiscoModal" class="modal">
+  <div class="modal-box">
+
+    <button onclick="closeModal('silentDiscoModal')" class="text-gray-400 mb-6">
+      ✕ CLOSE
+    </button>
+
+    <h3 class="font-display text-4xl text-bone mb-4">
+      SILENT DISCO
+    </h3>
+
+    <p class="text-sm text-gray-300 leading-relaxed">
+      A silent disco where guests can dance to music played through wireless headphones, 
+      creating a unique and immersive experience.
+    </p>
+  </div>
+</div>
+
+<!-- BOXES MODALS -->
+ <div id="allBoxesModal" class="modal">
+  <div class="modal-box">
+    <button onclick="closeModal('allBoxesModal')" class="text-gray-400 mb-6">✕ CLOSE</button>
+    <h3 class="font-display text-5xl text-bone mb-6">THE BOXES</h3>
+    <div class="grid md:grid-cols-2 gap-4">
+      <div onclick="openModal('playBoxModal')" class="cursor-pointer p-4 bg-gray-800 hover:bg-gray-700 text-ochre font-bold">
+        PlayBox
+      </div>
+      <div onclick="openModal('munchBoxModal')" class="cursor-pointer p-4 bg-gray-800 hover:bg-gray-700 text-tealdeep font-bold">
+        MunchBox
+      </div>
+      <div onclick="openModal('zenBoxModal')" class="cursor-pointer p-4 bg-gray-800 hover:bg-gray-700 text-bone font-bold">
+        ZenBox
+      </div>
+      <div onclick="openModal('craftBoxModal')" class="cursor-pointer p-4 bg-gray-800 hover:bg-gray-700 text-ember font-bold">
+        CraftBox
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- INDIVIDUAL BOXES MODALS -->
+ <!-- PlayBox Modal -->
+<div id="playBoxModal" class="modal">
+  <div class="modal-box">
+    <button onclick="closeModal('playBoxModal')" class="text-gray-400 mb-6">✕ CLOSE</button>
+    <h3 class="font-display text-4xl text-ochre mb-4">PLAYBOX</h3>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      A mini-game vending area where guests can play interactive games, challenge friends, and engage with playful ritual elements.
+    </p>
+  </div>
+</div>
+
+<!-- MunchBox Modal -->
+<div id="munchBoxModal" class="modal">
+  <div class="modal-box">
+    <button onclick="closeModal('munchBoxModal')" class="text-gray-400 mb-6">✕ CLOSE</button>
+    <h3 class="font-display text-4xl text-tealdeep mb-4">MUNCHBOX</h3>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      A food vending pop-up offering creative, ritual-inspired bites, snacks, and drinks. Fuel for the body during the maskerade.
+    </p>
+  </div>
+</div>
+
+<!-- ZenBox Modal -->
+<div id="zenBoxModal" class="modal">
+  <div class="modal-box">
+    <button onclick="closeModal('zenBoxModal')" class="text-gray-400 mb-6">✕ CLOSE</button>
+    <h3 class="font-display text-4xl text-bone mb-4">ZENBOX</h3>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      A quiet healing and relaxation station. Guests can meditate, receive mini wellness sessions, or just pause to reset before rejoining the ritual.
+    </p>
+  </div>
+</div>
+
+<!-- CraftBox Modal -->
+<div id="craftBoxModal" class="modal">
+  <div class="modal-box">
+    <button onclick="closeModal('craftBoxModal')" class="text-gray-400 mb-6">✕ CLOSE</button>
+    <h3 class="font-display text-4xl text-ember mb-4">CRAFTBOX</h3>
+    <p class="text-sm text-gray-300 leading-relaxed">
+      A hands-on creative station where guests can make masks, accessories, or small ritual objects. Exploration and creation encouraged.
+    </p>
+  </div>
+</div>
+
+<!-- SCRIPTS -->
+<script>
+const data = {
+  pandoras_box: {
+    title: "PANDORA'S BOX",
+    text: "Selectors who understand ritual and sonic pacing.",
+    crew: "DJ"
+  },
+  zen_keg: {
+    title: "ZEN KEG",
+    text: "Healing rituals and grounding experiences.",
+    crew: "HEALING"
+  },
+  fabri: {
+    title: "FABRI",
+    text: "Performance-led fashion and embodiment.",
+    crew: "PERFORMANCE"
+  },
+  qoded: {
+    title: "QODED",
+    text: "Cultural systems, narrative and design.",
+    crew: "DESIGN"
+  },
+
+  partners: {
+    title: "PARTNERS",
+    text: "Aligned cultural institutions and collaborators.",
+    crew: "PARTNER"
+  },
+  sponsors: {
+    title: "SPONSORS",
+    text: "Brands funding without extracting.",
+    crew: "SPONSOR"
+  },
+  allies: {
+    title: "ALLIES",
+    text: "Movement-aligned supporters.",
+    crew: "ALLY"
+  },
+  creators: {
+    title: "CREATORS",
+    text: "Artists, thinkers and builders.",
+    crew: "CREATOR"
+  }
+};
+
+const foundersPanel = document.getElementById("foundersSidePanel");
+const collabsPanel = document.getElementById("collabsSidePanel");
+
+const foundersTitle = document.getElementById("foundersTitle");
+const foundersText = document.getElementById("foundersText");
+const foundersCrew = document.getElementById("foundersCrew");
+
+const collabsTitle = document.getElementById("collabsTitle");
+const collabsText = document.getElementById("collabsText");
+const collabsCrew = document.getElementById("collabsCrew");
+
+document.querySelectorAll(".menu-item").forEach(item => {
+  item.addEventListener("click", () => {
+    const key = item.dataset.panel;
+    const group = item.dataset.group;
+
+    // Close both first (safety)
+    foundersPanel.classList.remove("active");
+    collabsPanel.classList.remove("active");
+
+    if (group === "founders") {
+      foundersTitle.textContent = data[key].title;
+      foundersText.textContent = data[key].text;
+      foundersCrew.textContent = data[key].crew;
+      foundersPanel.classList.add("active");
+    }
+
+    if (group === "collabs") {
+      collabsTitle.textContent = data[key].title;
+      collabsText.textContent = data[key].text;
+      collabsCrew.textContent = data[key].crew;
+      collabsPanel.classList.add("active");
+    }
+  });
+});
+
+function closePanels() {
+  foundersPanel.classList.remove("active");
+  collabsPanel.classList.remove("active");
+}
+
+function closePanel() {
+  foundersPanel.classList.remove("active");
+}
+
+</script>
+<script>
+function openEvent(type) {
+  if (type === "feb") {
+    document.getElementById("eventTitle").textContent =
+      "FEBRUARY — INITIATION";
+    document.getElementById("febEventModal").classList.add("active");
+  }
+
+  if (type === "june") {
+    document.getElementById("eventTitle").textContent =
+      "JUNE — THE FULL MASKERADE";
+    document.getElementById("juneEventModal").classList.add("active");
+  }
+}
+
+function closeEvent(type) {
+  if (type === "feb") {
+    document.getElementById("febEventModal").classList.remove("active");
+  }
+
+  if (type === "june") {
+    document.getElementById("juneEventModal").classList.remove("active");
+  }
+}
+</script>
+<script>
+function openModal(id) {
+  document.getElementById(id).classList.add("active");
+}
+
+function closeModal(id) {
+  document.getElementById(id).classList.remove("active");
+}
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>How You Come In — Kemboi × Barakoa</title>
+
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        baseblack: "#0e0e0f",
+        ember: "#d12a2a",
+        ochre: "#c48a2e",
+        tealdeep: "#0f6a63",
+        bone: "#e8e4d8",
+        graysoft: "#8c8c8c"
+      },
+      fontFamily: {
+        display: ["Impact","Anton","Arial Black","sans-serif"],
+        body: ["Inter","system-ui"]
+      }
+    }
+  }
+}
+</script>
+
+
+<style>
+.rule { height:1px; background:rgba(255,255,255,.12); margin:4rem 0; }
+.letter p { margin-bottom:1.8rem; line-height:1.7; }
+.side-nav a { display:block; margin-bottom:.75rem; opacity:.6; }
+.side-nav a:hover { opacity:1; }
+
+
+.partner-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 2rem;
+}
+
+
+.partner-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 1.5rem;
+  transform: rotate(var(--r));
+  transition: all .2s ease;
+}
+
+
+.partner-card:hover {
+  transform: rotate(0deg) scale(1.03);
+  border-color: rgba(255,255,255,0.35);
+}
+
+
+.partner-name {
+  font-family: Impact, sans-serif;
+  font-size: 1.25rem;
+  letter-spacing: .05em;
+}
+
+
+.partner-link {
+  font-size: .75rem;
+  margin-top: .5rem;
+  opacity: .6;
+}
+
+
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.9);
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+.modal.show { display: flex; }
+
+
+.modal-box {
+  background: #0e0e0f;
+  padding: 3rem;
+  max-width: 900px;
+  width: 90%;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+</style>
+</head>
+
+
+<body class="bg-baseblack text-gray-200 font-body antialiased">
+
+
+<!-- SIDE NAV -->
+<aside class="fixed top-0 left-0 h-full w-56 px-6 py-16 border-r border-white/10 side-nav hidden lg:block">
+  <p class="text-xs uppercase tracking-widest text-graysoft mb-6">On this page</p>
+  <a href="#letter">Dear Kemboi</a>
+  <a href="#what">What is Barakoa</a>
+  <a href="#why">Why Barakoa</a>
+  <a href="#experience">The Experience</a>
+  <a href="#flow">Event Flow</a>
+  <a href="#you">Where You Come In</a>
+  <a href="#minds">The Minds</a>
+  <a href="#partners">Partners</a>
+  <a href="#close">Close</a>
+</aside>
+
+
+<main class="ml-0 lg:ml-56 px-8 sm:px-12 md:px-20 max-w-[1100px]">
+
+
+<!-- LETTER -->
+<section id="letter" class="pt-32 pb-24">
+  <p class="uppercase tracking-widest text-xs text-graysoft mb-4">How You Come In</p>
+  <h1 class="font-display text-[4.5rem] leading-none text-bone mb-10">
+    Dear Kemboi,<br>we'd like to build with you
+  </h1>
+
+
+  <div class="letter max-w-2xl pt-10">
+    <p>
+      We are <strong>Barakoa</strong> — a cultural ritual built inside
+      <a href="index.html" class="underline text-ember">Turubai</a> and
+      <a href="nuke.html" class="underline text-ember">NUKe</a>.
+      We work at the intersection of music, theatre, fashion, psychology and underground culture.
+    </p>
+
+
+    <p>
+      We are reaching out to you not to “book a set”, but to help
+      <strong>curate an emotional arc</strong>.
+      To use sound as structure. Breath. Permission.
+    </p>
+
+
+    <p>
+      Barakoa needs musicians who understand pacing,
+      silence, restraint — and when to let a room open.
+      That’s why you.
+    </p>
+  </div>
+</section>
+
+
+<div class="rule"></div>
+
+
+<!-- WHAT -->
+<section id="what" class="pb-24">
+  <h2 class="font-display text-5xl text-bone mb-10">What is Barakoa?</h2>
+
+
+  <div class="letter max-w-2xl">
+    <p>
+      Barakoa is a <strong>popup immersive experience</strong>.
+      A temporary world built from temporary boxes.
+    </p>
+
+
+    <p>
+      It is a space to explore emotional masks —
+      the ways we hide our true feelings from ourselves and others.
+    </p>
+
+
+    <p>
+      Through live music, theatre, fashion, installations, and ritual play,
+      Barakoa creates space to soften what we suppress.
+    </p>
+
+
+    <p>
+      Theme for Barakoa 2026:<br>
+      <strong class="text-ochre">Love, Fear & the Quiet.</strong>
+    </p>
+  </div>
+
+
+  <h3 id="why" class="font-display text-3xl text-bone mt-16 mb-6">Why Barakoa?</h3>
+
+
+  <div class="letter max-w-2xl">
+    <p>
+      We live in a generation that feels everything loudly
+      but speaks about nothing honestly.
+    </p>
+
+
+    <p>
+      Barakoa exists to bring awareness to the masks we wear —
+      and let them soften through art.
+    </p>
+
+    <p>
+      In a world that prioritizes noise, Barakoa creates space for quiet.
+      In a culture obsessed with spectacle, Barakoa invites restraint.
+      In an age of distraction, Barakoa encourages presence.
+    </p>
+
+    <p>
+      Barakoa is a ritual for our times.
+      A space to feel deeply, express honestly, and connect authentically.
+    </p>
+  </div>
+</section>
+
+
+<div class="rule"></div>
+
+
+<!-- EXPERIENCE -->
+<section id="experience" class="pb-24">
+  <h2 class="font-display text-5xl text-bone mb-10">The Barakoa Experience</h2>
+
+
+  <div class="letter max-w-2xl">
+    <p><strong>February:</strong> private, invite-only teaser ritual.</p>
+    <p><strong>June:</strong> full ceremony. All boxes active.</p>
+  </div>
+
+
+  <div id="flow" class="mt-12 flex gap-6">
+    <button onclick="openModal('febEventModal')" class="bg-ochre text-black px-8 py-6 font-bold">
+      February Flow
+    </button>
+    <button onclick="openModal('juneEventModal')" class="bg-tealdeep text-bone px-8 py-6 font-bold">
+      June Flow
+    </button>
+  </div>
+</section>
+
+
+<div class="rule"></div>
+
+
+<!-- WHERE YOU COME IN -->
+<section id="you" class="pb-24">
+  <h2 class="font-display text-5xl text-bone mb-10">Why You, Specifically</h2>
+
+
+  <div class="letter max-w-2xl">
+    <p>
+      For this edition, the Barakoa Beat is <strong>NiloFunk</strong>.
+    </p>
+
+    <p class=" text-2xl text-ochre mb-10 italic">
+      This is where you come in.
+    </p>
+
+    <p>
+      NiloFunk draws from Afro-house and Afro-funktronica,
+      filtered through Nilotic rhythmic intelligence and live orchestration.
+      Cyclical indigenous grooves meet restrained electronic architecture.
+    </p>
+
+
+    <p>
+      It is groove-led, trance-adjacent, and built for collective movement —
+      prioritizing repetition, restraint, and embodied listening over spectacle.
+    </p>
+
+    <p>
+      In February, your sound helps us test the foundations of NiloFunk —
+      pacing, arrival energy, and rhythmic restraint.
+    </p>
+
+
+    <p>
+      In June, your role is to hold the rhythmic centre of the day.
+    </p>
+
+
+    <p>
+      We see you as someone that can help us curate a memorable barakoa experience.
+    </p>
+
+
+  </div>
+</section>
+
+
+<div class="rule"></div>
+
+
+<!-- MINDS -->
+<section id="minds" class="pb-24">
+  <h2 class="font-display text-5xl text-bone mb-10">The Minds Behind This</h2>
+  <p class="max-w-2xl text-graysoft">NUKe · Turubai · Qoded · Zen Keg</p>
+</section>
+
+
+<div class="rule"></div>
+
+
+<!-- PARTNERS -->
+<section id="partners" class="pb-24">
+  <h2 class="font-display text-5xl text-bone mb-10">Partners</h2>
+
+
+  <div class="partner-grid">
+    <a href="https://www.instagram.com/wagwan.eld" target="_blank" class="partner-card" style="--r:-3deg">
+      <div class="partner-name">Wagwan Eld</div>
+      <div class="partner-link">enter profile</div>
+    </a>
+
+
+    <a href="https://www.instagram.com/kivinya_kaloki" target="_blank" class="partner-card" style="--r:2deg">
+      <div class="partner-name">Kivinya wa Kaloki</div>
+      <div class="partner-link">enter profile</div>
+    </a>
+
+
+    <a href="https://www.instagram.com/ofuyo" target="_blank" class="partner-card" style="--r:-1deg">
+      <div class="partner-name">Ofuyo</div>
+      <div class="partner-link">enter profile</div>
+    </a>
+
+
+    <a href="https://www.instagram.com/ayanna.ke" target="_blank" class="partner-card" style="--r:4deg">
+      <div class="partner-name">Ayanna.ke</div>
+      <div class="partner-link">enter profile</div>
+    </a>
+
+
+    <a href="https://www.instagram.com/daniel_njugi" target="_blank" class="partner-card" style="--r:-4deg">
+      <div class="partner-name">Daniel Njugi</div>
+      <div class="partner-link">enter profile</div>
+    </a>
+
+
+    <a href="https://www.instagram.com/thefunkyorchestra" target="_blank" class="partner-card" style="--r:1deg">
+      <div class="partner-name">Funky Orchestra</div>
+      <div class="partner-link">enter profile</div>
+    </a>
+  </div>
+</section>
+
+
+<div class="rule"></div>
+
+
+<!-- CLOSE -->
+<section id="close" class="pb-40">
+  <h2 class="font-display text-5xl text-bone mb-10">Closing</h2>
+
+
+  <div class="letter max-w-2xl">
+    <p>If this resonates...we build together.</p>
+    <p>Let us know if this aligns and we’ll set up a virtual meet.</p>
+  </div>
+</section>
+
+
+<footer class="pb-12 text-sm text-graysoft">
+  <a href="nuke.html" class="underline mr-4">NUKe</a>
+  <a href="index.html" class="underline mr-4">turubai</a>
+  <a href="barakoa.html" class="underline">barakoa</a>
+</footer>
+
+
+</main>
+
+
+<script>
+function openModal(id){ document.getElementById(id).classList.add("show"); }
+function closeModal(id){ document.getElementById(id).classList.remove("show"); }
+</script>
+
+<!-- FEB EVENT MODAL -->
+<div id="febEventModal" class="modal">
+  <div class="modal-box">
+    <button onclick="closeModal('febEventModal')" class="mb-6 underline text-graysoft">
+      ✕ CLOSE
+    </button>
+
+
+    <h3 class="font-display text-4xl text-bone mb-6">
+      February Teaser Ritual
+    </h3>
+
+
+    <p class="text-gray-300 leading-relaxed mb-4">
+      A private, invite-only gathering for collaborators.
+      This is where we test sound, flow, pacing, and emotional temperature.
+    </p>
+
+
+    <ul class="space-y-2 text-gray-400">
+      <li>• Meet & Greet</li>
+      <li>• Sound & Mic Check</li>
+      <li>• Live experimentation</li>
+    </ul>
+  </div>
+</div>
+
+
+<!-- JUNE EVENT MODAL -->
+<div id="juneEventModal" class="modal">
+  <div class="modal-box">
+    <button onclick="closeModal('juneEventModal')" class="mb-6 underline text-graysoft">
+      ✕ CLOSE
+    </button>
+
+
+    <h3 class="font-display text-4xl text-bone mb-6">
+      June Full Ceremony
+    </h3>
+
+
+    <p class="text-gray-300 leading-relaxed mb-4">
+      The full Barakoa experience.
+      All boxes active. Theatre, fashion, music, ritual, release.
+    </p>
+
+
+    <ul class="space-y-2 text-gray-400">
+      <li>• Marketplace + pop-ups</li>
+      <li>• Theatre ritual</li>
+      <li>• NiloFunk-led night ensemble</li>
+    </ul>
+  </div>
+</div>
+
+</body>
+</html>
+
